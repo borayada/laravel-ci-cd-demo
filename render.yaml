@@ -4,7 +4,8 @@ services:
     plan: free
     branch: main
     rootDir: .
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: Dockerfile
+    runtime: docker
     envVars:
       - key: APP_ENV
         value: production
