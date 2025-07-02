@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
     locales \
     zip \
     jpegoptim optipng pngquant gifsicle \
-    vim unzip git curl
+    vim unzip git curl \
+    libonig-dev  # <-- 🧠 Required for mbstring
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -25,12 +26,13 @@ WORKDIR /var/www
 
 COPY . .
 
-# Install dependencies
+# Install Laravel dependencies
 RUN composer install
 
-# Copy existing application directory permissions
+# Change ownership for web user
 COPY --chown=www-data:www-data . /var/www
 
-# Expose port 8000 and start Laravel server
+# Expose port
 EXPOSE 8000
+
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
