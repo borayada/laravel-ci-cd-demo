@@ -13,3 +13,5 @@ services:
         value: false
       - key: DB_CONNECTION
         value: sqlite
+      - key: APP_KEY
+        value: base64:7VEjRpN/VcJOxid5cLt34uXKdkwZCTiuNvmH3K2X7+U=
